@@ -1,0 +1,4 @@
+n**2
+2**n
+n*log(n)
+invalid_function
