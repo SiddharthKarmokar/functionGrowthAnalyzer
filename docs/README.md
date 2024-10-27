@@ -28,3 +28,11 @@ functionGrowthAnalyzer/
 ├── .gitignore
 ├── LICENSE
 └── INSTALLATION.md
+
+## Usage:
+- Use Input and Plot to display single functions, one at a time.
+- Use clear to delete all existing functions.
+- Compare is for plotting the functions all at once.
+
+- When in graph, when it is not scale. Press y for scaling y-Axis
+- Press x for scaling x-Axis.
