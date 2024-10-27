@@ -17,8 +17,8 @@ def save_input():
 
 def plot_input():
     global processes
-    if os.path.exists("main.py"): 
-        process = subprocess.Popen(["python", "main.py"]) 
+    if os.path.exists("./src/main.py"):
+        process = subprocess.Popen(["python", "./src/main.py"])
         processes.append(process)  
     else:
         messagebox.showerror("Error", "main.py not found.")
