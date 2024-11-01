@@ -5,6 +5,10 @@ from tkinter import filedialog
 
 processes = []
 
+def show_input_dialog(title, prompt):
+    dialog = ctk.CTkInputDialog(text=prompt, title=title)
+    return dialog.get_input()  
+
 def show_error(title, message):
     error_window = ctk.CTkToplevel(root)
     error_window.title(title)
@@ -17,7 +21,7 @@ def show_error(title, message):
     close_button.pack(pady=10)
 
 def initialize_file():
-    with open("../functions.txt", "w") as file:
+    with open("functions.txt", "w") as file:
         file.write("")
 
 def save_input():
@@ -40,24 +44,18 @@ def compare_input():
         with open("../functions.txt", "a") as file:
             file.write(user_input + "\n")
 
-def upload_function_code():
-    file_path = filedialog.askopenfilename(title="Select Function Code File", filetypes=[("Python Files", "*.py")])
-    if file_path and os.path.exists(file_path):
-        try:
-            # Read the uploaded file content
-            with open(file_path, 'r') as uploaded_file:
-                code_content = uploaded_file.read()
-
-            # Write the content to function_code.py
-            with open("./src/function_code.py", "w") as function_file:
-                function_file.write(code_content)
-
-            # Call real_time_complexity.py after saving the uploaded file
-            subprocess.Popen(["python", "./src/real_time_complexity.py"])
-        except Exception as e:
-            show_error("Error", str(e))
+def upload_and_execute():
+    # Open file dialog to select the Python file to upload
+    file_path = filedialog.askopenfilename(title="Select Python File", filetypes=[("Python files", "*.py")])
+    if file_path:
+        with open("src/function_code.py", "w") as file:
+            with open(file_path, "r") as uploaded_file:
+                file.write(uploaded_file.read())
+        
+        # Call the real_time_complexity.py after uploading
+        subprocess.Popen(["python", "./src/real_time_complexity.py"])
     else:
-        show_error("Error", "Invalid file path or file does not exist.")
+        show_error("Error", "No file selected.")
 
 def exit_application():
     global processes
@@ -92,7 +90,7 @@ plot_button.pack(pady=10)
 compare_button = ctk.CTkButton(button_frame, text="Compare", command=compare_input, **button_config)
 compare_button.pack(pady=10)
 
-upload_button = ctk.CTkButton(button_frame, text="Upload Function Code", command=upload_function_code, **button_config)
+upload_button = ctk.CTkButton(button_frame, text="Upload Function Code", command=upload_and_execute, **button_config)
 upload_button.pack(pady=10)
 
 clear_button = ctk.CTkButton(button_frame, text="Clear", command=initialize_file, **button_config)
