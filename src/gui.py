@@ -57,7 +57,7 @@ def upload_and_execute():
     else:
         show_error("Error", "No file selected.")
 
-def exit_application():
+def exit_application(): 
     global processes
     for process in processes:
         if process.poll() is None:
