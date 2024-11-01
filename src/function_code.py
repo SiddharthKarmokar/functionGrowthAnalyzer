@@ -1,43 +1,47 @@
-def binary_search(arr, target):
-    """Perform binary search on a sorted array to find the target value."""
-    left, right = 0, len(arr) - 1
+def merge_sort(arr):
+    """Sort an array using the merge sort algorithm."""
+    if len(arr) > 1:
+        mid = len(arr) // 2  # Find the middle point
+        left_half = arr[:mid]  # Divide the array elements into 2 halves
+        right_half = arr[mid:]
 
-    while left <= right:
-        mid = (left + right) // 2  # Find the middle index
+        # Recursive call on each half
+        merge_sort(left_half)
+        merge_sort(right_half)
 
-        # Check if the target is at mid
-        if arr[mid] == target:
-            return mid  # Target found
+        i = j = k = 0  # Initialize indices for left_half, right_half, and arr
 
-        # If target is greater, ignore the left half
-        elif arr[mid] < target:
-            left = mid + 1
+        # Copy data to temporary arrays L[] and R[]
+        while i < len(left_half) and j < len(right_half):
+            if left_half[i] < right_half[j]:
+                arr[k] = left_half[i]
+                i += 1
+            else:
+                arr[k] = right_half[j]
+                j += 1
+            k += 1
 
-        # If target is smaller, ignore the right half
-        else:
-            right = mid - 1
+        # Checking if any element was left
+        while i < len(left_half):
+            arr[k] = left_half[i]
+            i += 1
+            k += 1
 
-    return -1  # Target not found
+        while j < len(right_half):
+            arr[k] = right_half[j]
+            j += 1
+            k += 1
 
 def example_function(n):
-    """Example function demonstrating binary search with O(log n) complexity."""
-    # Generate a sorted list of integers
-    arr = list(range(1, n + 1))  # Sorted array from 1 to n
+    """Example function demonstrating merge sort with a sample array."""
+    # Create a sample array
+    arr = [n - i for i in range(n)]  # Example array from n to 1
+    merge_sort(arr)  # Sort the array
 
-    # Define a target to search for
-    target = n // 2  # For example, searching for the middle value
-
-    # Perform binary search
-    index = binary_search(arr, target)
-
-    return index
+    return arr
 
 # Example usage:
 if __name__ == "__main__":
-    n = 100  # Example size
-    result_index = example_function(n)
-
-    if result_index != -1:
-        print(f"Target found at index: {result_index}")
-    else:
-        print("Target not found.")
+    n = 10  # Example size
+    sorted_array = example_merge_sort(n)
+    print(f"Sorted array: {sorted_array}")
