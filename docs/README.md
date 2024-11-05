@@ -36,3 +36,12 @@ functionGrowthAnalyzer/<br>
 
 - When in graph, when it is not scale. Press y for scaling y-Axis
 - Press x for scaling x-Axis.
+
+## TEAM MEMBERS :
+1) Siddharth Karmokar - 123cs0061
+2) Manish P           - 123cs0005
+3) Sarath P           - 123cs0028
+4) Samsrith M         - 123cs0029
+5) Kiran G            - 123cs0018
+6) Rovan M            - 123cs0036
+

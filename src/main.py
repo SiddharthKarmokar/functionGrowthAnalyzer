@@ -11,7 +11,7 @@ def main():
         for func in functions:
             print(func)
 
-        # Example: Plot the functions (assuming the plotting function exists)
+       
         plot_functions(functions)
 
 

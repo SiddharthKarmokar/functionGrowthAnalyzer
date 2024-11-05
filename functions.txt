@@ -1,5 +1,1 @@
-exp(n)
-log(n)
-n**3
-sin(n)
-cos(n)
+n

@@ -1,30 +1,27 @@
 import customtkinter as ctk
 import subprocess
 import os
+from tkinter import filedialog
 
 processes = []
-
 
 def show_input_dialog(title, prompt):
     dialog = ctk.CTkInputDialog(text=prompt, title=title)
     return dialog.get_input()  
-
 
 def show_error(title, message):
     error_window = ctk.CTkToplevel(root)
     error_window.title(title)
     error_window.geometry("300x150")
     
-    
     label = ctk.CTkLabel(error_window, text=message, wraplength=250, font=ctk.CTkFont(size=14))
     label.pack(pady=20)
     
-   
     close_button = ctk.CTkButton(error_window, text="OK", command=error_window.destroy)
     close_button.pack(pady=10)
 
 def initialize_file():
-    with open("../functions.txt", "w") as file:
+    with open("functions.txt", "w") as file:
         file.write("")
 
 def save_input():
@@ -47,13 +44,25 @@ def compare_input():
         with open("../functions.txt", "a") as file:
             file.write(user_input + "\n")
 
-def exit_application():
+def upload_and_execute():
+    # Open file dialog to select the Python file to upload
+    file_path = filedialog.askopenfilename(title="Select Python File", filetypes=[("Python files", "*.py")])
+    if file_path:
+        with open("src/function_code.py", "w") as file:
+            with open(file_path, "r") as uploaded_file:
+                file.write(uploaded_file.read())
+        
+        # Call the real_time_complexity.py after uploading
+        subprocess.Popen(["python", "./src/real_time_complexity.py"])
+    else:
+        show_error("Error", "No file selected.")
+
+def exit_application(): 
     global processes
     for process in processes:
         if process.poll() is None:
             process.terminate()
     root.quit()
-
 
 ctk.set_appearance_mode("System")  
 ctk.set_default_color_theme("blue")  
@@ -62,10 +71,8 @@ root = ctk.CTk()
 root.title("Function Growth Analyzer")
 root.geometry("800x600")
 
-
 button_frame = ctk.CTkFrame(root)
 button_frame.pack(expand=True)
-
 
 button_config = {
     "width": 200,
@@ -82,6 +89,9 @@ plot_button.pack(pady=10)
 
 compare_button = ctk.CTkButton(button_frame, text="Compare", command=compare_input, **button_config)
 compare_button.pack(pady=10)
+
+upload_button = ctk.CTkButton(button_frame, text="Upload Function Code", command=upload_and_execute, **button_config)
+upload_button.pack(pady=10)
 
 clear_button = ctk.CTkButton(button_frame, text="Clear", command=initialize_file, **button_config)
 clear_button.pack(pady=10)

@@ -7,6 +7,6 @@ def complexity_estimator(func):
         return "O(log n)"
     elif func == sp.Symbol('n')**2:
         return "O(n^2)"
-    # Add more rules or heuristics for common cases
+    
     else:
         return "Complexity not easily identifiable"
