@@ -7,27 +7,27 @@ This project allows users to input mathematical functions and visually compare t
 - Plot graphs to compare function growth.
 - Estimate time complexity (Big-O notation) for common functions.
 
-##GitHub Repo Structure
-functionGrowthAnalyzer/
-│
-├── src/
-│   ├── __init__.py
-│   ├── function_input.py
-│   ├── function_plotter.py
-│   ├── function_complexity.py
-│   └── main.py
-│
-├── tests/
-│   ├── __init__.py
-│   ├── test_function_input.py
-│   ├── test_function_plotter.py
-│   └── test_complexity_calculator.py
-│
-├── functions.txt
-├── requirements.txt
-├── .gitignore
-├── LICENSE
-└── INSTALLATION.md
+## GitHub Repo Structure
+functionGrowthAnalyzer/<br>
+│<br>
+├── src/<br>
+│   ├── __init__.py<br>
+│   ├── function_input.py<br>
+│   ├── function_plotter.py<br>
+│   ├── function_complexity.py<br>
+│   └── main.py<br>
+│<br>
+├── tests/<br>
+│   ├── __init__.py<br>
+│   ├── test_function_input.py<br>
+│   ├── test_function_plotter.py<br>
+│   └── test_complexity_calculator.py<br>
+│<br>
+├── functions.txt<br>
+├── requirements.txt<br>
+├── .gitignore<br>
+├── LICENSE<br>
+└── INSTALLATION.md<br>
 
 ## Usage:
 - Use Input and Plot to display single functions, one at a time.

@@ -1,0 +1,5 @@
+def exp_example(n):
+    if n == 0:
+        return 1
+    return exp_example(n - 1) + exp_example(n - 1)
+
